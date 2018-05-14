@@ -7,3 +7,6 @@ str2 = 'how are you'
 str3 = 'Fine thank you , and you ?'
 for i in range(10):
 	print(i)
+	if i >= 5:
+		break
+	return i++
