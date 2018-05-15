@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        #all{
+            margin:0px auto;
+            }
+    </style>
+</head>
+<body style='background: url("/static/3.jpg")'>
+{#{{ show }}#}
+<div style="float: right;margin-right: 1px">
+    <form action="{% url 'app1:search' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="search"><input type="submit">
+    </form>
+</div>
+{% for i in posts %}
+    <ul>
+    <li>{{ i.id }}</li>
+    <li>{{ i.title }}</li>
+    <li>{{ i.created }}</li>
+    <li>{{ i.content }}</li>
+    </ul>
+{% endfor %}
+
+<form action="{% url 'app1:create' %}" method="post">
+    {% csrf_token %}
+    标题:<input type="text" name="title"> <br>
+    作者:<input type="text" name="created"><br>
+    内容:<textarea name="content" rows="5" cols="30">请输入内容...</textarea><br>
+         <input type="submit">
+</form>
+    <nav aria-label="Page navigation">
+        <ul class="pagination" style="float: left">
+            {% for n in pages %}
+
+            <li style="list-style-type: none;float: left;margin-left: 10px;width: 20px;height: 20px;color: dodgerblue"><a href="/index/?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+
+            {% endfor %}
+        </ul>
+    </nav>
+</body>
+</html>
